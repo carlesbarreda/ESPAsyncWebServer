@@ -35,7 +35,8 @@ bool checkBasicAuthentication(const char * hash, const char * username, const ch
 
   size_t toencodeLen = strlen(username)+strlen(password)+1;
   size_t encodedLen = base64_encode_expected_len(toencodeLen);
-  if(strlen(hash) != encodedLen)
+  //TODO: Need to fix why encodedLen is len of hash plus one.
+  if(strlen(hash) != encodedLen && strlen(hash) + 1 != encodedLen)
     return false;
 
   char *toencode = new char[toencodeLen+1];
